@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import DataTable from './components/DataTable'
+import SessionTable from './components/SessionTable'
 
 export default async function HomePage() {
   return (
@@ -28,11 +28,8 @@ export default async function HomePage() {
               Bug Monitoring Hunt for today {new Date().toLocaleDateString()}
             </p>
           </div>
-          {/* <div className="flex items-center space-x-2">
-            <UserNav />
-          </div> */}
         </div>
-        <DataTable />
+        <SessionTable />
       </div>
     </>
   )
