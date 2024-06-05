@@ -4,5 +4,21 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("ALP_DATABASE_URL")
+}
+
+model AlpSession {
+  id            BigInt    @id @default(autoincrement())
+  sessionId     String    @map("session_id")
+  bannerId      String    @map("banner_id")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime? @updatedAt @map("updated_at")
+  resultSuccess Boolean   @default(false) @map("result_success")
+  resultCode    Int       @default(0) @map("result_code")
+  resultMessage String?   @map("result_message")
+  alpVersion    String    @map("alp_version")
+  alpAction     String    @map("alp_action")
+  otaVersion    String    @map("ota_version")
+
+  @@map("alp_sessions")
 }
