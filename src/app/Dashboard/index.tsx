@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import SessionTable from './components/SessionTable'
 import { Suspense } from 'react'
 

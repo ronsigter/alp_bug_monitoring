@@ -1,13 +1,17 @@
 'use client'
 
+import { useState } from 'react'
 import {
-  ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
   getPaginationRowModel,
+  getFilteredRowModel,
+  getFacetedRowModel,
+  getFacetedUniqueValues,
+  type ColumnDef,
+  type ColumnFiltersState,
 } from '@tanstack/react-table'
-
 import {
   Table,
   TableBody,
@@ -17,6 +21,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import Pagination from './Pagination'
+import Toolbar from './Toolbar'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -27,15 +32,25 @@ export default function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+
   const table = useReactTable({
+    state: {
+      columnFilters,
+    },
     data,
     columns,
+    onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getFacetedRowModel: getFacetedRowModel(),
+    getFacetedUniqueValues: getFacetedUniqueValues(),
   })
 
   return (
     <div className='space-y-4'>
+      <Toolbar table={table} />
       <div className='rounded-md border'>
         <Table>
           <TableHeader>

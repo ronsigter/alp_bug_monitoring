@@ -7,6 +7,8 @@ export const errorSession = AlpSessionSchema.pick({
 }).merge(
   z.object({
     total: z.number().int(),
+    bannerName: z.string(),
+    priority: z.number(),
   })
 )
 export type ErrorSession = z.infer<typeof errorSession>
