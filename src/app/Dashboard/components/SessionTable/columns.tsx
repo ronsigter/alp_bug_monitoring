@@ -7,7 +7,8 @@ import { ColumnHeader } from '@/components/DataTable/ColumnHeader'
 export const columns: ColumnDef<ErrorSession>[] = [
   {
     accessorKey: 'bannerId',
-    header: 'Banner ID',
+    enableSorting: true,
+    header: ({ column }) => <ColumnHeader column={column} title='Banner ID' />,
   },
   {
     accessorKey: 'bannerName',
