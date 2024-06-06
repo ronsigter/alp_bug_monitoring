@@ -26,7 +26,7 @@ export default async function HomePage() {
           <div>
             <h2 className='text-2xl font-bold tracking-tight'>Welcome back!</h2>
             <p className='text-muted-foreground'>
-              Bug Monitoring Hunt for today {new Date().toLocaleDateString()}
+              Bug Monitoring for today {new Date().toLocaleDateString()}
             </p>
           </div>
         </div>
