@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import SessionTable from './components/SessionTable'
+import { Suspense } from 'react'
 
 export default async function HomePage() {
   return (
@@ -29,7 +30,9 @@ export default async function HomePage() {
             </p>
           </div>
         </div>
-        <SessionTable />
+        <Suspense fallback={<div>Loading...</div>}>
+          <SessionTable />
+        </Suspense>
       </div>
     </>
   )
