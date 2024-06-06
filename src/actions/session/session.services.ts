@@ -40,10 +40,19 @@ export const listErrorSessions = cache(
       },
     })
 
-    const mappedErrorSessions = errorSessions.map((errorSession) => ({
-      ...errorSession,
-      total: errorSession._count.id,
-    }))
+    // Sort by bannerid and total
+    const mappedErrorSessions = errorSessions
+      .map((errorSession) => ({
+        ...errorSession,
+        total: errorSession._count.id,
+      }))
+      .sort((a, b) => {
+        if (a.bannerId === b.bannerId) {
+          // Total is only important when bannerId are the same
+          return b.total - a.total
+        }
+        return a.bannerId > b.bannerId ? 1 : -1
+      })
 
     return mappedErrorSessions
   }
