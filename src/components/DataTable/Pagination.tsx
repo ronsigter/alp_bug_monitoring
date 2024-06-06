@@ -1,11 +1,11 @@
+'use client'
+
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   DoubleArrowLeftIcon,
   DoubleArrowRightIcon,
 } from '@radix-ui/react-icons'
-import { Table } from '@tanstack/react-table'
-
 import { Button } from '@/components/ui/button'
 import {
   Select,
@@ -14,12 +14,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { useDataTable } from './Provider'
 
-interface PaginationProps<TData> {
-  table: Table<TData>
-}
+export function Pagination() {
+  const { table } = useDataTable()
 
-export default function Pagination<TData>({ table }: PaginationProps<TData>) {
   return (
     <div className='flex items-center justify-between px-2'>
       <div className='flex-1 text-sm text-muted-foreground'>

@@ -26,7 +26,9 @@ export const columns: ColumnDef<ErrorSession>[] = [
 
       return <div>{priorityLabel[row.original.priority]}</div>
     },
-    filterFn: 'weakEquals',
+    filterFn: (row, _id, value) => {
+      return value.includes(row.original.priority)
+    },
   },
   {
     accessorKey: 'resultMessage',

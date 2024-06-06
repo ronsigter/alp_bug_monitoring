@@ -1,6 +1,7 @@
+'use client'
+
 import * as React from 'react'
 import { CheckIcon, PlusCircledIcon } from '@radix-ui/react-icons'
-import { Column } from '@tanstack/react-table'
 
 import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
@@ -20,9 +21,10 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { Separator } from '@/components/ui/separator'
+import { useDataTable } from './Provider'
 
-interface FacetedFilterProps<TData, TValue> {
-  column?: Column<TData, TValue>
+interface FilterProps {
+  columnName: string
   title?: string
   options: {
     label: string
@@ -31,11 +33,9 @@ interface FacetedFilterProps<TData, TValue> {
   }[]
 }
 
-export default function FacetedFilter<TData, TValue>({
-  column,
-  title,
-  options,
-}: FacetedFilterProps<TData, TValue>) {
+export function Filter({ title, options, columnName }: FilterProps) {
+  const { table } = useDataTable()
+  const column = table.getColumn(columnName)
   const facets = column?.getFacetedUniqueValues()
   const selectedValues = new Set(
     column?.getFilterValue() as (string | number)[]
