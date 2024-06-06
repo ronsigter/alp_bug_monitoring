@@ -19,7 +19,8 @@ GROUP BY banner_id, platform, result_message;
 
 export const listErrorSessions = cache(
   async (): Promise<SessionSchema.ListErrorSessionsResponse> => {
-    const errorSessions = await prisma.alpSession.findMany({
+    const errorSessions = await prisma.alpSession.groupBy({
+      by: ['bannerId', 'resultMessage'],
       where: {
         resultSuccess: false,
         createdAt: {
@@ -34,7 +35,9 @@ export const listErrorSessions = cache(
           ],
         },
       },
-      take: 100,
+      _count: {
+        id: true,
+      },
     })
 
     return errorSessions
