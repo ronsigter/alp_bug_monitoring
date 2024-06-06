@@ -40,6 +40,11 @@ export const listErrorSessions = cache(
       },
     })
 
-    return errorSessions
+    const mappedErrorSessions = errorSessions.map((errorSession) => ({
+      ...errorSession,
+      total: errorSession._count.id,
+    }))
+
+    return mappedErrorSessions
   }
 )

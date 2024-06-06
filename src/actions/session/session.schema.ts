@@ -1,5 +1,16 @@
-import { type AlpSession } from '@prisma/client'
+import { z } from 'zod'
+import { AlpSessionSchema } from '@/schemas'
 
-export type ErrorSession = Pick<AlpSession, 'bannerId' | 'resultMessage'>
-
-export type ListErrorSessionsResponse = ErrorSession[]
+export const errorSession = AlpSessionSchema.pick({
+  resultMessage: true,
+  bannerId: true,
+}).merge(
+  z.object({
+    total: z.number().int(),
+  })
+)
+export type ErrorSession = z.infer<typeof errorSession>
+export const listErrorSessionsResponse = z.array(errorSession)
+export type ListErrorSessionsResponse = z.infer<
+  typeof listErrorSessionsResponse
+>

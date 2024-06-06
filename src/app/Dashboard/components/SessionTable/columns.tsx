@@ -1,24 +1,19 @@
 'use client'
 
 import { ColumnDef } from '@tanstack/react-table'
+import { type ErrorSession } from '@/actions/session/session.schema'
 
-export type AlpSession = {
-  result_message: string
-  total: number
-  banner_id: string
-}
-
-export const columns: ColumnDef<AlpSession>[] = [
+export const columns: ColumnDef<ErrorSession>[] = [
   {
-    accessorKey: 'banner_id',
+    accessorKey: 'bannerId',
     header: 'Banner ID',
   },
   {
-    accessorKey: 'banner_id',
+    accessorKey: 'bannerId',
     header: 'Merchant Name',
   },
   {
-    accessorKey: 'result_message',
+    accessorKey: 'resultMessage',
     header: 'Error Message',
   },
   {
