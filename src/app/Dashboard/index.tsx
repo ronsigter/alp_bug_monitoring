@@ -1,3 +1,4 @@
+import { Spinner } from '@/components/Loaders'
 import SessionTable from './components/SessionTable'
 import { Suspense } from 'react'
 
@@ -12,7 +13,13 @@ export default async function HomePage() {
           </p>
         </div>
       </div>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <div className='h-[500px]'>
+            <Spinner message='Fetching data...' />
+          </div>
+        }
+      >
         <SessionTable />
       </Suspense>
     </div>
