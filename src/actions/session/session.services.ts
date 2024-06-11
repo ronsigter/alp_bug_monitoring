@@ -61,3 +61,28 @@ export const listErrorSessions = cache(
     return mappedErrorSessions
   }
 )
+
+// get all session ids. function accepts filter options for bannerId and resultmessage
+export const listSessionIds = cache(
+  async (
+    filter: SessionSchema.ListSessionIdsRequest = {}
+  ): Promise<SessionSchema.ListSessionIdsResponse> => {
+    const { bannerId, resultMessage, limit = 10 } = filter
+    const sessions = await prisma.alpSession.findMany({
+      where: {
+        resultSuccess: true,
+        createdAt: {
+          gte: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+        },
+        ...(bannerId && { bannerId }),
+        ...(resultMessage && { resultMessage }),
+      },
+      select: {
+        sessionId: true,
+      },
+      take: limit,
+    })
+
+    return sessions.map(({ sessionId }) => sessionId)
+  }
+)

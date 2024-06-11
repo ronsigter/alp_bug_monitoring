@@ -16,3 +16,15 @@ export const listErrorSessionsResponse = z.array(errorSession)
 export type ListErrorSessionsResponse = z.infer<
   typeof listErrorSessionsResponse
 >
+
+export const filterOptions = z.object({
+  resultMessage: AlpSessionSchema.shape.resultMessage.optional(),
+  bannerId: AlpSessionSchema.shape.bannerId.optional(),
+  limit: z.number().int().optional(),
+})
+export type ListSessionIdsRequest = z.infer<typeof filterOptions>
+
+export const sessionId = AlpSessionSchema.shape.sessionId
+export type SessionId = z.infer<typeof sessionId>
+export const listSessionIdsResponse = z.array(sessionId)
+export type ListSessionIdsResponse = z.infer<typeof listSessionIdsResponse>
