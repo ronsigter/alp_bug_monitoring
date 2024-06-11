@@ -3,6 +3,7 @@
 import { cache } from 'react'
 import * as SessionSchema from './session.schema'
 import { prisma } from '@/lib/db'
+import { MERCHANT_BANNER_IDS } from '@/constants/merchantBannerIds'
 
 /*
 SELECT regexp_replace(regexp_replace(result_message, '^\s+', ''), '\s+$', ''), count(id) AS total, banner_id, platform
@@ -45,6 +46,9 @@ export const listErrorSessions = cache(
       .map((errorSession) => ({
         ...errorSession,
         total: errorSession._count.id,
+        bannerId: errorSession.bannerId,
+        bannerName: MERCHANT_BANNER_IDS[errorSession.bannerId].name,
+        priority: MERCHANT_BANNER_IDS[errorSession.bannerId].priority,
       }))
       .sort((a, b) => {
         if (a.bannerId === b.bannerId) {
