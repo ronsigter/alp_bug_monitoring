@@ -1,9 +1,7 @@
 'use client'
 
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Cross2Icon } from '@radix-ui/react-icons'
-import { useDataTable } from './Provider'
+import { useDataTable } from '.'
 
 interface SearchBarProps {
   searchPlaceholder?: string

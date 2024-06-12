@@ -19,9 +19,20 @@ GROUP BY banner_id, platform, result_message;
 */
 
 export const listErrorSessions = cache(
-  async (): Promise<SessionSchema.ListErrorSessionsResponse> => {
+  async ({
+    otaVersion,
+  }: SessionSchema.ListErrorSessionsRequest): Promise<SessionSchema.ListErrorSessionsResponse> => {
+    // Prepare the filtering conditions
+    // TODO: Add support for multiple versions
+    const conditions = [{ banner_id: null, alp_version: null }].map(
+      (version) => ({
+        banner_id: version.banner_id,
+        alp_version: version.alp_version,
+      })
+    )
+
     const errorSessions = await prisma.alpSession.groupBy({
-      by: ['bannerId', 'resultMessage'],
+      by: ['bannerId', 'resultMessage', 'alpVersion'],
       where: {
         resultSuccess: false,
         createdAt: {
@@ -35,6 +46,7 @@ export const listErrorSessions = cache(
             'missing start event',
           ],
         },
+        otaVersion,
       },
       _count: {
         id: true,

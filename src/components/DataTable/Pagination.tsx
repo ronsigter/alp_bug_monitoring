@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { useDataTable } from './Provider'
+import { useDataTable } from '.'
 
 export function Pagination() {
   const { table } = useDataTable()

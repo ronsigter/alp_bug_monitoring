@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { useDataTable } from './Provider'
+import { useDataTable } from '.'
 import { flexRender } from '@tanstack/react-table'
 
 export function Table() {

@@ -2,7 +2,7 @@
 
 import { type ColumnDef } from '@tanstack/react-table'
 import { type ErrorSession } from '@/actions/session/session.schema'
-import { ColumnHeader } from '@/components/DataTable/ColumnHeader'
+import { ColumnHeader } from '@/components/DataTable'
 
 export const columns: ColumnDef<ErrorSession>[] = [
   {
@@ -33,6 +33,10 @@ export const columns: ColumnDef<ErrorSession>[] = [
   {
     accessorKey: 'resultMessage',
     header: 'Error Message',
+  },
+  {
+    accessorKey: 'alpVersion',
+    header: 'ALP Version',
   },
   {
     accessorKey: 'total',

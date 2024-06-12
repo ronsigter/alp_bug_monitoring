@@ -21,7 +21,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { Separator } from '@/components/ui/separator'
-import { useDataTable } from './Provider'
+import { useDataTable } from '.'
 
 interface FilterProps {
   columnName: string

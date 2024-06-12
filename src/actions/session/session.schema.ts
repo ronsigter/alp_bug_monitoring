@@ -1,6 +1,10 @@
 import { z } from 'zod'
 import { AlpSessionSchema } from '@/schemas'
 
+export const listErrorSessionsRequest = z.object({
+  otaVersion: AlpSessionSchema.shape.otaVersion,
+})
+export type ListErrorSessionsRequest = z.infer<typeof listErrorSessionsRequest>
 export const errorSession = AlpSessionSchema.pick({
   resultMessage: true,
   bannerId: true,

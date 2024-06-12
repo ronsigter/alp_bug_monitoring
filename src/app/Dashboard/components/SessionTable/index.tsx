@@ -1,18 +1,18 @@
-import {
-  DataTableProvider,
-  Table,
-  Pagination,
+import DataTable, {
   SearchBar,
   Filter,
+  Table,
+  Pagination,
 } from '@/components/DataTable'
 import { columns } from './columns'
 import { listErrorSessions } from '@/actions/session/session.services'
+import { PRIORITY_OPTIONS } from '../../constants'
 
 export default async function SessionTable() {
-  const errorSessions = await listErrorSessions()
+  const errorSessions = await listErrorSessions({ otaVersion: '2.80.13' })
 
   return (
-    <DataTableProvider columns={columns} data={errorSessions}>
+    <DataTable columns={columns} data={errorSessions}>
       <div className='space-y-4'>
         <div className='flex gap-2'>
           <SearchBar
@@ -22,25 +22,12 @@ export default async function SessionTable() {
           <Filter
             columnName={'priority'}
             title='Priority'
-            options={[
-              {
-                value: 1,
-                label: 'High',
-              },
-              {
-                value: 2,
-                label: 'Medium',
-              },
-              {
-                value: 3,
-                label: 'Low',
-              },
-            ]}
+            options={PRIORITY_OPTIONS}
           />
         </div>
         <Table />
         <Pagination />
       </div>
-    </DataTableProvider>
+    </DataTable>
   )
 }
