@@ -1,6 +1,7 @@
 import { Spinner } from '@/components/Loaders'
 import SessionTable from './components/SessionTable'
 import { Suspense } from 'react'
+import SessionIdModal from './components/SessionIdModal'
 
 export default async function HomePage() {
   return (
@@ -22,6 +23,7 @@ export default async function HomePage() {
       >
         <SessionTable />
       </Suspense>
+      <SessionIdModal />
     </div>
   )
 }

@@ -10,6 +10,7 @@ type SessionValue = {
 type UseSessionIdsStore = {
   sessionIds: Map<string, SessionValue>
   onAddSessionIds: (key: string, value: SessionValue) => void
+  selectedSession: SessionValue | null
 }
 
 export const useSessionIdsStore = create<UseSessionIdsStore>((set, get) => ({
@@ -17,4 +18,5 @@ export const useSessionIdsStore = create<UseSessionIdsStore>((set, get) => ({
   onAddSessionIds: (key, value) => {
     set({ sessionIds: get().sessionIds.set(key, value) })
   },
+  selectedSession: null,
 }))

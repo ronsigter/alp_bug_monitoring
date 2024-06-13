@@ -1,4 +1,4 @@
-import { useState, useTransition } from 'react'
+import { useTransition } from 'react'
 import * as SessionSchema from '@/actions/session/session.schema'
 import { Button } from '@/components/ui/button'
 import Tooltip from '@/components/ui/tooltip'
@@ -7,6 +7,8 @@ import { cn } from '@/lib/utils'
 import { toast } from 'sonner'
 import * as SessionServices from '@/actions/session/session.services'
 import { useSessionIdsStore } from '../../store/useSessionIdsStore'
+import { useModalStore } from '@/components/Modal'
+import { SESSION_MODAL_ID } from '../SessionIdModal'
 
 type ActionRowCellProps = {
   session: SessionSchema.ErrorSession
@@ -18,11 +20,11 @@ export default function ActionRowCell({
   accessorValue,
 }: ActionRowCellProps) {
   const { bannerId, resultMessage, alpVersion } = session
-
   const uniqueID = `${bannerId}-${resultMessage}-${alpVersion}`
-
   const { sessionIds, onAddSessionIds } = useSessionIdsStore()
+  const openModal = useModalStore(({ onOpenModal }) => onOpenModal)
   const [pending, startTransition] = useTransition()
+
   const handleOnClickGetSessionIds = (session: SessionSchema.ErrorSession) => {
     const { bannerId, resultMessage, alpVersion } = session
     startTransition(async () => {
@@ -42,6 +44,12 @@ export default function ActionRowCell({
     })
   }
 
+  const handleOnClickViewSessionIds = () => {
+    const selectedSession = sessionIds.get(uniqueID)
+    useSessionIdsStore.setState({ selectedSession: selectedSession })
+    openModal(SESSION_MODAL_ID)
+  }
+
   return (
     <div className='flex items-center gap-2'>
       <p>{accessorValue}</p>
@@ -52,7 +60,11 @@ export default function ActionRowCell({
       >
         {sessionIds.has(uniqueID) ? (
           <Tooltip label='View Fetched Session IDs'>
-            <Button type='button' size='icon'>
+            <Button
+              type='button'
+              size='icon'
+              onClick={handleOnClickViewSessionIds}
+            >
               <FileTextIcon size={16} />
             </Button>
           </Tooltip>
