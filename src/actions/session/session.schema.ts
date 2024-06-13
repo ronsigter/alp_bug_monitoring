@@ -8,6 +8,7 @@ export type ListErrorSessionsRequest = z.infer<typeof listErrorSessionsRequest>
 export const errorSession = AlpSessionSchema.pick({
   resultMessage: true,
   bannerId: true,
+  alpVersion: true,
 }).merge(
   z.object({
     total: z.number().int(),
@@ -22,8 +23,9 @@ export type ListErrorSessionsResponse = z.infer<
 >
 
 export const filterOptions = z.object({
-  resultMessage: AlpSessionSchema.shape.resultMessage.optional(),
-  bannerId: AlpSessionSchema.shape.bannerId.optional(),
+  alpVersion: AlpSessionSchema.shape.alpVersion,
+  resultMessage: AlpSessionSchema.shape.resultMessage,
+  bannerId: AlpSessionSchema.shape.bannerId,
   limit: z.number().int().optional(),
 })
 export type ListSessionIdsRequest = z.infer<typeof filterOptions>

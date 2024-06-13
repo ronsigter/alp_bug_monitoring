@@ -5,11 +5,13 @@ import DataTable, {
   Pagination,
 } from '@/components/DataTable'
 import { columns } from './columns'
-import { listErrorSessions } from '@/actions/session/session.services'
+import * as SessionServices from '@/actions/session/session.services'
 import { PRIORITY_OPTIONS } from '../../constants'
 
 export default async function SessionTable() {
-  const errorSessions = await listErrorSessions({ otaVersion: '2.80.13' })
+  const errorSessions = await SessionServices.listErrorSessions({
+    otaVersion: '2.80.13',
+  })
 
   return (
     <DataTable columns={columns} data={errorSessions}>
