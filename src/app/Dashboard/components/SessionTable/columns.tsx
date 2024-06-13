@@ -3,6 +3,7 @@
 import { type ColumnDef } from '@tanstack/react-table'
 import { type ErrorSession } from '@/actions/session/session.schema'
 import { ColumnHeader } from '@/components/DataTable'
+import ActionRowCell from './ActionRowCell'
 
 export const columns: ColumnDef<ErrorSession>[] = [
   {
@@ -42,5 +43,11 @@ export const columns: ColumnDef<ErrorSession>[] = [
     accessorKey: 'total',
     enableSorting: true,
     header: ({ column }) => <ColumnHeader column={column} title='Count' />,
+    cell: ({ row, getValue }) => (
+      <ActionRowCell
+        session={row.original}
+        accessorValue={getValue<string>()}
+      />
+    ),
   },
 ]
