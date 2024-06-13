@@ -31,7 +31,12 @@ export default function ActionRowCell({
         resultMessage,
         alpVersion,
       })
-      onAddSessionIds(uniqueID, sessionIds)
+      onAddSessionIds(uniqueID, {
+        alpVersion,
+        bannerId,
+        resultMessage,
+        sessionIds,
+      })
 
       toast.success('Session IDs fetched')
     })

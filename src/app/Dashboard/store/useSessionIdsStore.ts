@@ -1,8 +1,15 @@
 import { create } from 'zustand'
 
+type SessionValue = {
+  sessionIds: string[]
+  alpVersion: string
+  bannerId: number
+  resultMessage: string | null
+}
+
 type UseSessionIdsStore = {
-  sessionIds: Map<string, string[]>
-  onAddSessionIds: (key: string, value: string[]) => void
+  sessionIds: Map<string, SessionValue>
+  onAddSessionIds: (key: string, value: SessionValue) => void
 }
 
 export const useSessionIdsStore = create<UseSessionIdsStore>((set, get) => ({
