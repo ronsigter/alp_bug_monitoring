@@ -19,7 +19,7 @@ export default function ActionRowCell({
   session,
   accessorValue,
 }: ActionRowCellProps) {
-  const { bannerId, resultMessage, alpVersion } = session
+  const { bannerId, resultMessage, alpVersion, bannerName } = session
   const uniqueID = `${bannerId}-${resultMessage}-${alpVersion}`
   const { sessionIds, onAddSessionIds } = useSessionIdsStore()
   const openModal = useModalStore(({ onOpenModal }) => onOpenModal)
@@ -38,6 +38,7 @@ export default function ActionRowCell({
         bannerId,
         resultMessage,
         sessionIds,
+        bannerName,
       })
 
       toast.success('Session IDs fetched')

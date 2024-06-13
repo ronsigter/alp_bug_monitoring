@@ -10,6 +10,12 @@ export default function SessionIdModal() {
 
   return (
     <Modal name={SESSION_MODAL_ID}>
+      <div className='flex flex-col gap-1'>
+        <p>Banner ID: {selectedSession?.bannerId}</p>
+        <p>Banner Name: {selectedSession?.bannerName}</p>
+        <p>Error Message: {selectedSession?.resultMessage}</p>
+      </div>
+
       {selectedSession?.sessionIds.map((sessionId) => {
         return <div key={sessionId}>{sessionId}</div>
       })}

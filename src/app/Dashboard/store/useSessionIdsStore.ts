@@ -4,6 +4,7 @@ type SessionValue = {
   sessionIds: string[]
   alpVersion: string
   bannerId: number
+  bannerName: string
   resultMessage: string | null
 }
 
