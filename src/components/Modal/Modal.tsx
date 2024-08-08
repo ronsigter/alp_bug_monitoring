@@ -13,7 +13,6 @@ export default function Modal(props: ModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={() => toggleModal(props.name)}>
-      <DialogTrigger>Open</DialogTrigger>
       <DialogContent>{props.children}</DialogContent>
     </Dialog>
   )

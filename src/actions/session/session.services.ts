@@ -24,7 +24,7 @@ export const listErrorSessions = cache(
       where: {
         resultSuccess: false,
         createdAt: {
-          gte: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+          gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
         },
         resultMessage: {
           notIn: [
@@ -50,6 +50,11 @@ export const listErrorSessions = cache(
         bannerName: MERCHANT_BANNER_IDS[errorSession.bannerId].name,
         priority: MERCHANT_BANNER_IDS[errorSession.bannerId].priority,
       }))
+      .filter(
+        (errorSession) =>
+          errorSession.alpVersion ===
+          MERCHANT_BANNER_IDS[errorSession.bannerId].latest_version
+      )
       .sort((a, b) => {
         if (a.bannerId === b.bannerId) {
           // Total is only important when bannerId are the same
@@ -78,7 +83,7 @@ export const listSessionIds = cache(
       where: {
         resultSuccess: false,
         createdAt: {
-          gte: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+          gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
         },
         bannerId,
         resultMessage,

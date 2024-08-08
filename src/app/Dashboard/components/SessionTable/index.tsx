@@ -3,15 +3,15 @@ import DataTable, {
   Filter,
   Table,
   Pagination,
-} from '@/components/DataTable'
-import { columns } from './columns'
-import * as SessionServices from '@/actions/session/session.services'
-import { PRIORITY_OPTIONS } from '../../constants'
+} from "@/components/DataTable";
+import { columns } from "./columns";
+import * as SessionServices from "@/actions/session/session.services";
+import { PRIORITY_OPTIONS } from "../../constants";
 
 export default async function SessionTable() {
   const errorSessions = await SessionServices.listErrorSessions({
-    otaVersion: '2.80.13',
-  })
+    otaVersion: "2.90.15",
+  });
 
   return (
     <DataTable columns={columns} data={errorSessions}>
@@ -22,7 +22,7 @@ export default async function SessionTable() {
             searchPlaceholder='Search by merchant name'
           />
           <Filter
-            columnName={'priority'}
+            columnName={"priority"}
             title='Priority'
             options={PRIORITY_OPTIONS}
           />
@@ -31,5 +31,5 @@ export default async function SessionTable() {
         <Pagination />
       </div>
     </DataTable>
-  )
+  );
 }
