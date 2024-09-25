@@ -25,7 +25,7 @@ export default async function HomePage({
           </div>
         }
       >
-        <SessionTable searchParams={searchParams} />
+        <SessionTable />
       </Suspense>
       <SessionIdModal />
     </div>

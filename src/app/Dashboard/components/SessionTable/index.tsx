@@ -1,19 +1,8 @@
-import DataTable, {
-  SearchBar,
-  Filter,
-  Table,
-  Pagination,
-} from "@/components/DataTable";
-import { columns } from "./columns";
+import { SessionTableContainer } from "./SessionTableContainer";
 import * as SessionServices from "@/actions/session/session.services";
-import { PRIORITY_OPTIONS } from "../../constants";
 
-export default async function SessionTable({
-  searchParams,
-}: {
-  searchParams: any;
-}) {
-  let errorSessions = await SessionServices.listErrorSessions();
+export default async function SessionTable() {
+  const errorSessions = await SessionServices.listErrorSessions();
 
   const latest: { [key: string]: string } = {};
   errorSessions.forEach((errorSession) => {
@@ -31,30 +20,5 @@ export default async function SessionTable({
     }
   });
 
-  if (searchParams.latestOTA) {
-    errorSessions = errorSessions.filter(
-      (errorSession) =>
-        errorSession.alpVersion === latest[errorSession.bannerId]
-    );
-  }
-
-  return (
-    <DataTable columns={columns} data={errorSessions}>
-      <div className='space-y-4'>
-        <div className='flex gap-2'>
-          <SearchBar
-            searchColumnName='bannerName'
-            searchPlaceholder='Search by merchant name'
-          />
-          <Filter
-            columnName={"priority"}
-            title='Priority'
-            options={PRIORITY_OPTIONS}
-          />
-        </div>
-        <Table />
-        <Pagination />
-      </div>
-    </DataTable>
-  );
+  return <SessionTableContainer sessions={errorSessions} latest={latest} />;
 }
