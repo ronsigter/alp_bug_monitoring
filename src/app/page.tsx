@@ -6,4 +6,6 @@ export const metadata: Metadata = {
   description: "Bug Monitoring for ALP",
 };
 
+export const dynamic = "force-dynamic";
+
 export default Dashboard;
