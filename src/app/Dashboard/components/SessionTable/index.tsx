@@ -6,16 +6,30 @@ export default async function SessionTable() {
 
   const latest: { [key: string]: string } = {};
   errorSessions.forEach((errorSession) => {
-    const ota = errorSession.alpVersion.split(".");
-    const current = latest[errorSession.bannerId];
+    const { bannerId, alpVersion } = errorSession; // Destructure banner_id and version
 
-    if (!current) {
-      latest[errorSession.bannerId] = errorSession.alpVersion;
+    if (!latest[bannerId]) {
+      // If this bannerId doesn't exist in `latest`, set the current version
+      latest[bannerId] = alpVersion;
     } else {
-      const currentOta = +current.split(".");
-      const otaVersion = +ota[2];
-      if (currentOta < otaVersion) {
-        latest[errorSession.bannerId] = errorSession.alpVersion;
+      const currentVersion = latest[bannerId];
+      const currentParts = currentVersion.split(".").map(Number);
+      const newParts = alpVersion.split(".").map(Number);
+
+      // Compare the versions
+      let isNewer = false;
+      for (let i = 0; i < currentParts.length; i++) {
+        if (newParts[i] > currentParts[i]) {
+          isNewer = true;
+          break;
+        } else if (newParts[i] < currentParts[i]) {
+          break;
+        }
+      }
+
+      // If new version is newer, update it
+      if (isNewer) {
+        latest[bannerId] = alpVersion;
       }
     }
   });
