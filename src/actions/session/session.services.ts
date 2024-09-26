@@ -45,13 +45,13 @@ export const listErrorSessions = cache(
       });
 
     return mappedErrorSessions;
-  }
+  },
 );
 
 // get all session ids. function accepts filter options for bannerId and resultmessage
 export const listSessionIds = cache(
   async (
-    filter: SessionSchema.ListSessionIdsRequest
+    filter: SessionSchema.ListSessionIdsRequest,
   ): Promise<SessionSchema.ListSessionIdsResponse> => {
     const { alpVersion, bannerId, resultMessage, limit = 10 } = filter;
     const sessions = await prisma.alpSession.findMany({
@@ -71,5 +71,5 @@ export const listSessionIds = cache(
     });
 
     return sessions.map(({ sessionId }) => sessionId);
-  }
+  },
 );

@@ -1,1 +1,1 @@
-export * from '../../prisma/zod-schemas'
+export * from "../../prisma/zod-schemas";

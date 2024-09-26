@@ -10,9 +10,9 @@ export function OnlyLatestSwitch() {
   };
 
   return (
-    <div className='flex items-center gap-2'>
-      <Switch id='latest-ota' onCheckedChange={handleOnChange} />
-      <Label htmlFor='latest-ota'>Latest Version Only</Label>
+    <div className="flex items-center gap-2">
+      <Switch id="latest-ota" onCheckedChange={handleOnChange} />
+      <Label htmlFor="latest-ota">Latest Version Only</Label>
     </div>
   );
 }

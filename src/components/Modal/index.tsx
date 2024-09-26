@@ -1,5 +1,5 @@
-import Modal from './Modal'
+import Modal from "./Modal";
 
-export * from './useModalStore'
+export * from "./useModalStore";
 
-export default Modal
+export default Modal;

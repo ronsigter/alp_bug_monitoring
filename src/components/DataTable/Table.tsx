@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   Table as TablePrimitive,
@@ -7,15 +7,15 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { useDataTable } from '.'
-import { flexRender } from '@tanstack/react-table'
+} from "@/components/ui/table";
+import { useDataTable } from ".";
+import { flexRender } from "@tanstack/react-table";
 
 export function Table() {
-  const { table } = useDataTable()
+  const { table } = useDataTable();
 
   return (
-    <div className='rounded-md border'>
+    <div className="rounded-md border">
       <TablePrimitive>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -25,12 +25,9 @@ export function Table() {
                   <TableHead key={header.id}>
                     {header.isPlaceholder
                       ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
+                      : flexRender(header.column.columnDef.header, header.getContext())}
                   </TableHead>
-                )
+                );
               })}
             </TableRow>
           ))}
@@ -40,8 +37,8 @@ export function Table() {
             table.getRowModel().rows.map((row) => (
               <TableRow
                 key={row.id}
-                data-state={row.getIsSelected() && 'selected'}
-                className='group'
+                data-state={row.getIsSelected() && "selected"}
+                className="group"
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
@@ -54,7 +51,7 @@ export function Table() {
             <TableRow>
               <TableCell
                 colSpan={table.getAllColumns().length}
-                className='h-24 text-center'
+                className="h-24 text-center"
               >
                 No results.
               </TableCell>
@@ -63,5 +60,5 @@ export function Table() {
         </TableBody>
       </TablePrimitive>
     </div>
-  )
+  );
 }

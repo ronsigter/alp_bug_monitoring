@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   Sheet,
@@ -6,32 +6,32 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/components/ui/sheet'
+} from "@/components/ui/sheet";
 
-import { useFormSheetStore } from './useFormSheetStore'
+import { useFormSheetStore } from "./useFormSheetStore";
 
 type FormSheetProps = {
-  name: string
-  children?: React.ReactNode
-  sheetTrigger?: React.ReactNode
-  title: string
-  side?: 'top' | 'bottom' | 'left' | 'right' | null | undefined
-}
+  name: string;
+  children?: React.ReactNode;
+  sheetTrigger?: React.ReactNode;
+  title: string;
+  side?: "top" | "bottom" | "left" | "right" | null | undefined;
+};
 
 export default function FormSheet(props: FormSheetProps) {
-  const formSheetStore = useFormSheetStore()
-  const isOpen = formSheetStore.openedSheets.has(props.name)
+  const formSheetStore = useFormSheetStore();
+  const isOpen = formSheetStore.openedSheets.has(props.name);
 
   return (
     <Sheet
       open={isOpen}
       onOpenChange={() => {
-        formSheetStore.toggleSheet(props.name)
+        formSheetStore.toggleSheet(props.name);
       }}
     >
       <SheetTrigger asChild>{props.sheetTrigger}</SheetTrigger>
       <SheetContent
-        className='w-screen !max-w-none overflow-auto md:w-[540px]'
+        className="w-screen !max-w-none overflow-auto md:w-[540px]"
         side={props.side}
       >
         <SheetHeader>
@@ -42,5 +42,5 @@ export default function FormSheet(props: FormSheetProps) {
         {props.children}
       </SheetContent>
     </Sheet>
-  )
+  );
 }

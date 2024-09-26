@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 /////////////////////////////////////////
 // ALP SESSION SCHEMA
@@ -17,8 +17,8 @@ export const AlpSessionSchema = z.object({
   alpAction: z.string(),
   otaVersion: z.string(),
   platform: z.string(),
-})
+});
 
-export type AlpSession = z.infer<typeof AlpSessionSchema>
+export type AlpSession = z.infer<typeof AlpSessionSchema>;
 
 export default AlpSessionSchema;

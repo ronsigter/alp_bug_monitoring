@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  alp-monitoring-client:
+    container_name: alp-monitoring-client
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - alp-monitoring
+    ports:
+      - 3000:3000
+
+networks:
+  alp-monitoring:

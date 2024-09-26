@@ -1,16 +1,16 @@
-import { LoaderCircle } from 'lucide-react'
+import { LoaderCircle } from "lucide-react";
 
 type SpinnerProps = {
-  message?: string
-}
+  message?: string;
+};
 
 export function Spinner(props: SpinnerProps) {
   return (
-    <div className='flex items-center justify-center h-full'>
-      <div className='flex flex-col gap-2 items-center justify-center'>
-        <LoaderCircle className='h-12 w-12 animate-spin' />
-        <p className='text-sm text-muted-foreground italic'>{props.message}</p>
+    <div className="flex h-full items-center justify-center">
+      <div className="flex flex-col items-center justify-center gap-2">
+        <LoaderCircle className="h-12 w-12 animate-spin" />
+        <p className="text-muted-foreground text-sm italic">{props.message}</p>
       </div>
     </div>
-  )
+  );
 }

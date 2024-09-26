@@ -1,14 +1,14 @@
 export const PRIORITY_OPTIONS = [
   {
     value: 1,
-    label: 'High',
+    label: "High",
   },
   {
     value: 2,
-    label: 'Medium',
+    label: "Medium",
   },
   {
     value: 3,
-    label: 'Low',
+    label: "Low",
   },
-]
+];
