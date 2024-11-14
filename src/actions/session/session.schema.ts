@@ -7,6 +7,7 @@ export const errorSession = AlpSessionSchema.pick({
   resultMessage: true,
   bannerId: true,
   alpVersion: true,
+  platform: true,
 }).merge(
   z.object({
     total: z.number().int(),

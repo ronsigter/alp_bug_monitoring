@@ -12,3 +12,14 @@ export const PRIORITY_OPTIONS = [
     label: "Low",
   },
 ];
+
+export const PLATFORM_OPTIONS = [
+  {
+    value: "android",
+    label: "Android",
+  },
+  {
+    value: "ios",
+    label: "iOS",
+  },
+];

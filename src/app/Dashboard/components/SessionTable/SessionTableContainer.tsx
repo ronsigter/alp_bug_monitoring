@@ -2,7 +2,7 @@
 
 import DataTable, { SearchBar, Filter, Table, Pagination } from "@/components/DataTable";
 import { columns } from "./columns";
-import { PRIORITY_OPTIONS } from "../../constants";
+import { PLATFORM_OPTIONS, PRIORITY_OPTIONS } from "../../constants";
 import { OnlyLatestSwitch } from "./OnlyLatestSwitch";
 import { ListErrorSessionsResponse } from "@/actions/session/session.schema";
 import { useSessionIdsStore } from "../../store/useSessionIdsStore";
@@ -37,6 +37,7 @@ export function SessionTableContainer({ sessions, latest }: SessionTableContaine
             searchPlaceholder="Search by merchant name"
           />
           <Filter columnName={"priority"} title="Priority" options={PRIORITY_OPTIONS} />
+          <Filter columnName={"platform"} title="Platforms" options={PLATFORM_OPTIONS} />
           <OnlyLatestSwitch />
         </div>
         <Table />

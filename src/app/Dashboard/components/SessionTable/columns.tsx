@@ -36,6 +36,13 @@ export const columns: ColumnDef<ErrorSession>[] = [
     header: "Error Message",
   },
   {
+    accessorKey: "platform",
+    header: "Platform",
+    filterFn: (row, _id, value) => {
+      return value.includes(row.original.platform);
+    },
+  },
+  {
     accessorKey: "alpVersion",
     header: "ALP Version",
   },

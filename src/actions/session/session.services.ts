@@ -8,7 +8,7 @@ import { MERCHANT_BANNER_IDS } from "@/constants/merchantBannerIds";
 export const listErrorSessions = cache(
   async (): Promise<SessionSchema.ListErrorSessionsResponse> => {
     const errorSessions = await prisma.alpSession.groupBy({
-      by: ["bannerId", "resultMessage", "alpVersion"],
+      by: ["bannerId", "resultMessage", "alpVersion", "platform"],
       where: {
         resultSuccess: false,
         createdAt: {
@@ -17,9 +17,9 @@ export const listErrorSessions = cache(
         resultMessage: {
           notIn: [
             "",
-            "unable to find banner id",
-            "incomplete session",
-            "missing start event",
+            // "unable to find banner id",
+            // "incomplete session",
+            // "missing start event",
           ],
         },
       },
