@@ -16,19 +16,20 @@ type ActionRowCellProps = {
 };
 
 export default function ActionRowCell({ session, accessorValue }: ActionRowCellProps) {
-  const { bannerId, resultMessage, alpVersion, bannerName } = session;
-  const uniqueID = `${bannerId}-${resultMessage}-${alpVersion}`;
+  const { bannerId, resultMessage, alpVersion, bannerName, platform } = session;
+  const uniqueID = `${bannerId}-${resultMessage}-${alpVersion}-${platform}`;
   const { sessionIds, onAddSessionIds } = useSessionIdsStore();
   const openModal = useModalStore(({ onOpenModal }) => onOpenModal);
   const [pending, startTransition] = useTransition();
 
   const handleOnClickGetSessionIds = (session: SessionSchema.ErrorSession) => {
-    const { bannerId, resultMessage, alpVersion } = session;
+    const { bannerId, resultMessage, alpVersion, platform } = session;
     startTransition(async () => {
       const sessionIds = await SessionServices.listSessionIds({
         bannerId,
         resultMessage,
         alpVersion,
+        platform,
       });
       onAddSessionIds(uniqueID, {
         alpVersion,

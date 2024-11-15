@@ -24,6 +24,7 @@ export const filterOptions = z.object({
   resultMessage: AlpSessionSchema.shape.resultMessage,
   bannerId: AlpSessionSchema.shape.bannerId,
   limit: z.number().int().optional(),
+  platform: AlpSessionSchema.shape.platform,
 });
 export type ListSessionIdsRequest = z.infer<typeof filterOptions>;
 

@@ -53,7 +53,7 @@ export const listSessionIds = cache(
   async (
     filter: SessionSchema.ListSessionIdsRequest,
   ): Promise<SessionSchema.ListSessionIdsResponse> => {
-    const { alpVersion, bannerId, resultMessage, limit = 10 } = filter;
+    const { alpVersion, bannerId, resultMessage, platform, limit = 10 } = filter;
     const sessions = await prisma.alpSession.findMany({
       where: {
         resultSuccess: false,
@@ -63,6 +63,7 @@ export const listSessionIds = cache(
         bannerId,
         resultMessage,
         alpVersion,
+        platform,
       },
       select: {
         sessionId: true,
