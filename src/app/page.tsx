@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Dashboard from "./dashboard";
+import DashboardViewer from "./dashboardViewer";
 
 export const metadata: Metadata = {
   title: "ALP Bug Monitoring",
@@ -8,4 +8,4 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default Dashboard;
+export default DashboardViewer;
